@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이벤트 처리</title>
+    <script>
+      // function 키워드로 함수를 정의한다 / function은 개발자가 짓는다.
+      function goUrl(address) {
+        // address는 변수명. 함수 실행에 필요한 입력값 저장
+        window.open(address, "blank");
+      }
+    </script>
+  </head>
+  <br>
+    <p>사용자가 일으키는 동작 - 이벤트</p>
+    <ul>
+      <li>버튼을 클릭할 때</li>
+      <li>입력 요소에 키보드를 누를 때</li>
+      <li>마우스로 이동/드래그앤드롭/클릭</li>
+    </ul>
+    <p>이벤트 처리하는 방법이 3가지 정도가 있다</p>
+    <ol>
+      <li>onclick (예) 속성에 직접 js 명령어 작성</li>
+      <li>onclick (예) 속성에 직접 js 함수로 실행</li>
+      <li>onclick 속성 사용하지 않고 addEventListener() method 사용</li>
+    </ol>
+    <!-- 필요에 의해서 특정 이벤트에 대한 처리할 명령을 작성. -->
+    <button
+      type="button"
+      onclick="alert('ITS OVER ANAKIN! I AM ON THE HIGH GROUND!')"
+    >
+      OBI WAN KENOBI
+    </button>
+    <!-- form 태그 없이 쓰면 type="button" 기본값(생략) -->
+    <button onclick="location.href='https://github.com'">
+      PROCEED TO GITHUB
+    </button>
+    <button onclick="window.open('https://github.com','blank')">
+      (NEW TAB) PROCEED TO GITHUB
+    </button>
+    <hr />
+    <button onclick="goUrl('https://naver.com')">PROCEED TO NAVER</button>
+    <button onclick="goUrl('https://github.com')">PROCEED TO GITHUB</button>
+    <button onclick="goUrl('https://google.com')">PROCEED TO GOOGLE</button>
+    <hr />
+    <input
+      type="text"
+      id="client"
+      style="width: 50%"
+      placeholder="enter the name of person that you want to greet"
+    />
+    <!-- input에 입력한 내용은 value 속성에 저장됩니다 -->
+    <button id="greet">ANAKIN SKYWALKER</button>
+    <hr />
+    <input
+      type="text"
+      id="url"
+      style="width: 40%"
+      placeholder="url을 입력하시오.(예시: www.naver.com)"
+    />
+        <button id="goUrl">3. URL 이동하기</button>
+</br>
+<hr>
+<select id="front-opp">
+<option value="www.">www.</option>
+<option value="">none</option>
+</select>
+
+    <input type="text" id="links" placeholder="www와 .com 제외." />
+    <select id="back-opp">
+        <option value=".com">.com</option>
+        <option value=".go.kr">.go.kr</option>
+        <option value=".co.kr">.co.kr</option>
+        <option value=".net">.net</option>
+    </select>
+    <button id="go-to-site">Go!</button>
+    <script>
+        const input = document.getElementById("client");
+        const output = document.getElementById("output");
+
+        input.addEventListener("keydown", function(event) {
+            if (event.key === "enter") {
+                const name = input.value.trim();
+                output.textContent = `Hello, ${name}! 👋`;
+            }
+        });
+
+        const goBtn = document.getElementById('goUrl')
+        goBtn.addEventListener('click', function(){
+        const url = document.getElementById('url').value
+        window.open('https://' + url, 'blank')
+        })
+
+      const greet = document.getElementById("greet"); //3. 인사하기 가져오기
+      greet.addEventListener(
+        "click",
+        function () {
+          // 함수(METHOD) 안의 함수 => 콜백함수. 이름없이 사용
+          const name = document.getElementById("client").value;
+          alert("YOU HAVE UNDERESTIMATED MY POWER! ");});
+         //함수 끝
+      const URL = document.getElementById("go-to-site");
+          URL.addEventListener("click", function () {
+            const front = document.getElementById("front-opp").value
+            const back = document.getElementById("back-opp").value
+            const links = document.getElementById("links").value;
+            window.open("https://"+front+links +back, "blank")}); // addEventListener 끝
+        
+    </script>
+  </body>
+</html>

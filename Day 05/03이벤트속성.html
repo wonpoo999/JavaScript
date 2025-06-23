@@ -7,11 +7,12 @@
 </head>
 <body>
     <div id="container" style="background-color: aquamarine;"> <!--  부모 요소 -->
-        <button id="btn">TEST BTN</button>
-        <button id="btn">이런게 있었지</button>
-        <button id="btn">아시겠지</button>
+        <button id="btn">열 받을 걸? 장담하지</button>
+        <button id="btn">후후, 마음껏 클릭과
+        </button>
+        <button id="btn">타이핑해보시게나</button>
         <hr>
-        <input id="url" placeholder="url을 입력하세요.">
+        <input id="url" placeholder="자, 어서어서!.">
     </div>
 
     <script>
@@ -28,9 +29,14 @@
             alert('(HR)틈새시장 공략하냐?')
             if(event.target.tagName =='INPUT')
             alert('(INPUT) YOU WILL TRY!')
-            if(event.target.tagName == 'KeyboardEvent')
-            alert('KeyboardEvent) YOUUUUU SHAAREE NOOOT PASSSSSS!!!')
             
+            
+        })
+        document.getElementById('url')
+        .addEventListener('keydown',function(event){
+            if (event.target.tagName=='INPUT')
+            alert('KeyboardEvent) YOUUUUU SHAAREE NOOOT PASSSSSS!!!')
+             console.log(event)
         })
 
         document.getElementById('url').addEventListener('keydown', function(event){

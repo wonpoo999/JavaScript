@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>array & loop</title>
+  </head>
+  <body>
+    <ul id="twice" class="members">
+        <!-- li*4 해봐라. li alt+shift 방향키해도 되고 이렇게 해도 되고 -->
+        <li class="members">1</li>
+        <li class="members">2</li>
+        <li class="members">3</li>
+        <li class="members">4</li>
+    </ul>
+    <script>
+        //shift + alt + f = 정렬
+      const members = ["mina", "momo", "nayeon", "dahyeon", "jihyo"];
+      document.write("<h3>트와이스 멤버</h3>");
+      members.push('sana')
+      for (let i = 0; i < members.length; i++) {
+        document.write(`<h4>${members[i]}</h4>`)
+      }
+
+    //   document.write(`<h4>${members[0]}</h4>`); 
+    //   document.write(`<h4>${members[1]}</h4>`);
+    //   document.write(`<h4>${members[2]}</h4>`);
+    //   document.write(`<h4>${members[3]}</h4>`);
+    //   document.write(`<h4>${members[4]}</h4>`);
+
+    // 여러개의 태그 요소를 가져오는 메소드.
+    //   ㄴ 배열처럼 인덱스를 사용하여 특정 요소만 가져오기. 배열은 아니야. 비슷한 구조일 뿐이야. 근데 대신 인덱스를 사용해서 0번 정보를 가져올 수 있을 뿐이야.
+    const twiceLI = document.querySelectorAll('ul#twice > li')
+    // ㄴ querySelector일 때 배열과 유사한 list라는 자류구조가 만들어진다.
+     console.log(twiceLI[0]) // undefined
+     const twiceLI2 = document.getElementsByTagName('li')
+     console.log(twiceLI2[0])
+     const twiceLI3 = document.getElementsByClassName('.members')
+     console.log(twiceLI3[0])
+    for(let i=0;i<twiceLI.length;i++){
+        console.log(twiceLI[i].textContent)
+        twiceLI[i].textContent = members[i] //li 요소 속성 변경
+        twiceLI[i].style.color = 'green'
+    }
+
+    //배열에서만 사용하는 form 형식이 하나 있어. 인덱스 지정없이 twiceLI에서 하나씩 가져올 수 있어.
+    for(let ele of twiceLI){
+        console.log(ele)
+    }
+    // 요건 members 배열에서 하나씩 가져오기
+    for(let val of members){
+        console.log(val)
+    }
+    </script>
+  </body>
+</html>

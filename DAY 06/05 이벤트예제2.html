@@ -27,45 +27,134 @@
       /* 자식 요소를 수직,수평 방향 모두 중앙 배치 */
       display: flex; justify-content: center; align-items: center;
     }
+    /* box 요소의 자표 (위치) 변경하기 위함이니 */
+    div#box {position: absolute;}
   </style>
 </head>
 <body>
     <div id="container">  <!-- 가장 바깥쪽 박스 -->
           <!-- 첫번째 윗줄 박스 -->
            <div class="nav">
-                <button id="top">👆</button><button id="right">👉</button>
-                <button id="down">👇</button><button id="left">👈</button>
+                <button id="top">작게(↑)</button><button id="right">넓게(→)</button>
+                <button id="down">높게(↓)</button><button id="left">좁게(←)</button>
            </div>
            <!-- 두번째 중앙 박스 -->
-           <div class="main">
+           <div class="main" id="parent">
                 <!-- 컨트롤 하고 싶은 박스 -->
                 <div id="box"></div>
            </div>
     </div>
     <script>
-         const container = document.getElementById('container')
+        const container = document.getElementById('container')
+        const box = document.getElementById('box')
+        // 부모 main 요소의 크기
+        const parentWidth = container.offsetWidth;
+        const parentHeight = container.offsetHeight;
+
+         document.body.addEventListener('keydown', e => {
+            console.log('이벤트정보', e)
+            // 현재 박스의 위치
+            const currentLeft = box.offsetLeft;
+            const currentTop = box.offsetTop;
+            // 현재 box의 크기
+            const currentWidth = box.offsetWidth;
+             const currentHeight = box.offsetHeight;
+
+             //
+             const parentWidth = document.getElementById("parent").offsetWidth
+             const parentHeight = document.getElementById("parent").offsetHeight
+
+            switch(e.key){ //눌려진 키보드 키를 검사
+                case 'w' : 
+                console.log('上상')
+                if(currentTop -10 > 100){
+                box.style.top = (currentTop-10)+'px'
+            }
+                break;
+                case 'd' : 
+                console.log('右우')
+                if(currentLeft +currentWidth +10 < parentWidth){
+                box.style.left = (currentLeft+10)+'px'
+            }
+                break;
+                case 's' : 
+                console.log('下하')
+                if(currentTop + currentHeight +10-100 < parentHeight){
+                      box.style.top = (currentTop+10)+'px'
+                 }
+                 break;
+                case 'a' : 
+                console.log('左좌')
+                if(currentLeft -10 > 0) {
+                box.style.left = (currentLeft-10)+'px'
+            }
+                break;
+                
+                 case 'ArrowUp':
+                             console.log('박스가 작아집니다.(높이)')
+                      box.style.height = (currentHeight-10) + 'px'
+                                break;
+                        case 'ArrowDown':
+                             console.log('박스가 커집니다.(높이)')
+                      box.style.height = (currentHeight+10) + 'px'
+                                break;
+                        case 'ArrowLeft':
+                             console.log('박스가 작아집니다.(너비)')
+                      box.style.width = (currentWidth-10) + 'px'
+                                break;
+                        case 'ArrowRight':
+                            console.log('박스가 커집니다.(너비)')
+                      box.style.width = (currentWidth+10) + 'px'
+                                break;
+ 
+            }
+
+         })
+
          container.addEventListener('click',
             function (event) {
                 if (event.target.tagName === 'BUTTON') {
                     console.log(event.target.id)
                     //이벤트를 발생시킨 요소(target)의 id 속성값
-                    // 현재 박스의 너비,높이 크기를 저장하기
-                    const currentWidth = box.offsetWidth
-                    const currentHeight = box.offsetHeight
+                    // 함수 현재 박스의 너비,높이 크기를 저장하기
+                    const currentWidth = box.offsetWidth;
+                    const currentHeight = box.offsetHeight;
                     // 크기는 10px 만큼 변경하기
 
                     if(event.target.id==='top') {    // 중첩 if (다른 if에 포함됨)
                       console.log('박스가 작아집니다.(높이)')
+                      box.style.height = (currentHeight-10) + 'px'
                     }else if(event.target.id==='down'){
                       //앞의 조건 event.target.id==='top' 거짓일 때, 다른 조건을 다시 검사
                       console.log('박스가 커집니다.(높이)')
+                      box.style.height = (currentHeight+10) + 'px'
                     }else if(event.target.id==='left'){
                       console.log('박스가 작아집니다.(너비)')
+                      box.style.width = (currentWidth-10) + 'px'
                     }else if(event.target.id==='right'){
                       console.log('박스가 커집니다.(너비)')
+                      box.style.width = (currentWidth+10) + 'px'
                     }
                       
+                    switch(event.target.id) {
+                        case 'top':
+                             console.log('박스가 작아집니다.(높이)')
+                      box.style.height = (currentHeight-10) + 'px'
+                                break;
+                        case 'down':
+                             console.log('박스가 커집니다.(높이)')
+                      box.style.height = (currentHeight+10) + 'px'
+                                break;
+                        case 'left':
+                             console.log('박스가 작아집니다.(너비)')
+                      box.style.width = (currentWidth-10) + 'px'
+                                break;
+                        case 'right':
+                            console.log('박스가 커집니다.(너비)')
+                      box.style.width = (currentWidth+10) + 'px'
+                                break;
 
+                    }
 
 
 

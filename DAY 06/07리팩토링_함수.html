@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Refactoring</title>
+  <link rel="icon" sizes="16x16" href="../images/pic_bulbon.gif">
+  <style>
+    body {
+        background-image: url('../images/night.jpg');
+        background-size: cover;
+        background-position: center;
+        transition: background-image 0.3s ease;
+        background-repeat: no-repeat;
+        height: 100vh;
+        margin: 0;
+    }
+  </style>
+</head>
+<body>
+   <img src="../images/pic_bulboff.gif" alt="OFF" width="70px" 
+        style="cursor: pointer;">
+   <button id="btn">OFF</button> 
+   <!-- 버튼 클릭할 때 마다 'ON','OFF' 토글(toggle) -->
+   <script>
+      const btn = document.getElementById('btn')
+      const changeFavicon = document.querySelector('link')
+      // 토글 기능을 변수를 이용해서 제어
+      let isOn = false    // true('ON'), false('OFF')  
+      let btnText
+      const bulbOFF = "../images/pic_bulboff.gif"
+      const bulbON = "../images/pic_bulbon.gif"
+      const Day = "../images/night.jpg"
+      const Night ="../images/day.jpg"
+      let bulbImg
+      const body = document.querySelector('body')
+      const img = document.querySelector('img')  //태그 이름을 선택자로 사용
+      //자주 사용하는 함수를 변수에 저장. 
+      // const onoff = () => {
+      const onoff = function() { //함수에 대한 변수 선언은 사용하는 코드보다 앞에
+        if (isOn) {   // ON 상태 - isOn 이 true 일 떄 실행
+            btnText= 'OFF'
+            bulbImg = bulbOFF
+            body.style.backgroundImage = `url('${Day}')`
+          }else {   // OFF 상태  - isOn 이 false 일 떄 실행
+            btnText = 'ON'
+            bulbImg = bulbON
+            body.style.backgroundImage = `url('${Night}')`
+          }
+          // 버튼, 이미지 요소에 변수값을 적용
+          btn.textContent = btnText
+          img.src = bulbImg
+          changeFavicon.href = bulbImg
+          // isOn 상태를 현재 상태와 반대(! 연산)로 변경
+          // true 이면 false , false 이면 true 로 변경
+          isOn = !isOn
+      }
+
+      btn.addEventListener('click',onoff)
+      img.addEventListener('click',onoff)
+      body.style.backgroundImage = `url('${Day}')`
+   </script>
+</body>
+</html>

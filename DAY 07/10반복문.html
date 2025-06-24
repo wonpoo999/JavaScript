@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>begins of loop</title>
+</head>
+<body>
+    <script>
+            let width = 200
+
+            // 반복문으로 width에 저장된 초기값 200을 일정한 간격으로 반복적으로 증가할 수 있노라.
+            //for(초기값;조건식;증가 또는 감소식)    
+            for(width=100;width < 400; width = width + 50) {
+                //100은 새 임의의 초기값을 넣은 거. 기존 초기값 쓸 거면 세미콜롬만(;) 적어넣어라
+                //반복 실행해야할 명령문들
+                document.write('width:', width, '<br>')
+                // 더 이상 실행 할 명령어 없으면 for로 이동
+                // 증가 또는 감소 명렁 먼저 먼저 실행한다. -> 조건식 검사 -> 참이면 17번(반복명령들)을 다시 실행한다.
+                //증가시키고 검사를 반복하다 거짓이면 for를 중단한다.
+                //
+                }
+            document.write('<hr>')
+    // for(width=500;width<400; width+=50){ //width = width + 50을 촉약 식으로 줄인
+    //     documentt.write('width:', width, '<br>')
+
+        //문제: 500, 450, 400, 350, 300 순서대로 출력하기
+
+        for(width=500; width>250; width = width -50) {
+            document.write('width:', width, '<br>')
+        }
+
+        document.write('<hr>')
+        for (width = 500; width >=300; width -=50){   //width = width-50
+            document.write('width', width, '<br>')
+        }
+
+document.write('<hr>')
+let max = prompt ('몇 줄 출력할까?? 숫자 넣어라') //alert(메시지), confirm('메세지')
+for(let i=1;i<=max; i++) {  // i=i+1 축약
+    // i=1,2,3,4,5
+    //let max는 몇개 출력할지를 위해 넣은 거고 max 대신 숫자를 넣으면 넣은 숫자 값 만큼 나옴
+    document.write( '💧⚡☀🔥'. repeat(i), '<br>')
+    //repeat(i) : 문자열을 i 만큼 반복하는 문자열의 메소드
+}
+
+
+    // }
+
+    </script>
+</body>
+</html>

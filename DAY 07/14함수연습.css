@@ -1,0 +1,39 @@
+input, select {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  border: none;
+  border-radius: 6px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+body {
+    font-family: sans-serif;
+    background-image: url(../images/ai.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.calculator {
+  position: absolute;           /* 위치를 임의로 조정할 수 있도록 */
+  top: 100px;
+  left: 100px;
+  cursor: move;                 /* 커서를 손 모양으로 */
+  background-color: rgba(255, 255, 255, 0.85); /* 배경 살짝 투명 */
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 260px;
+}

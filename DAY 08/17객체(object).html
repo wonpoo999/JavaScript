@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object</title>
+</head>
+<body>
+    <p>object객체는 array배열 보다 더 많은 기능을 갖는 자료구조이다 </p>
+    <h3>object의 component 구성요소</h3>
+        <ul>
+            <li>속성(객체의 특징 데이터) property (characteristic of object) = 속성이름과 값 한쌍으로 표현</li>
+            <li>method(메소드) object's function/action 객체의 기능/동작</li>
+        </ul>
+        <p>java script는 객체를 만들 때 {} 중가로 curly brace 기호로 정의한다</p>
+        <script>
+            //sana 변수는 객체를 밑에의 조건과 같이 할당 받은것이다.
+            const sana = {name: "김사나", age:22, address: "경기", height: 160.9}
+//const 선언은
+//  객체를 바꿀 수 없다는거지 할당 받은 조건을 바꿀 수 없다는 게 아니야.
+            console.log('sana:', sana)
+            console.log(sana.toString())
+// 예를 들어 밑에와 같이 조건을 바꿀 수 있다 
+            sana.height=165.8   //객체변수명. 객체속성
+            sana.age=18
+            sana.address="Seoul"
+            //속성값 가져오기
+            console.log(sana['name'], sana['age'], sana['address'], sana['height']) //배열 인덱스 기호와 동일하다
+
+            // 객체의 속성은 저장이 필요한 데이터에 임의로 개발자가 정함.
+            const momo = {name: "박모모", 
+                                    birth: "2000-11-12",
+                                    nationality: "Japan",
+                                    say: function(emoji) {  //속성값이  함수 정의 -> 메소드
+                                        alert("Too easy for Arteezy!" + emoji)
+
+                                    }
+                                    }
+
+            console.log(momo.name, momo.birth, momo.nationality)
+            momo.say('CliffedTZ gets cancer') //필요한 인자값이 없으면 emoji는 'undefined' 이다.
+            momo.say('😡')
+
+            //  객체에 사용하는 반복문이 있어 (위 처럼 굳이momo.name, momo.birth, momo.nationality 쓸 필요가 없이 다 불러오는 게 있지 )
+            //'in' 연산자는 지정된 객체의 속성을 하나씩 가져온다. 'key'는 속성 이름이지.
+            for(let key in sana){
+                console.log("key", key, "value", sana[key])
+            } //sana[key]는 대괄호(square bracket)이 보였지? 객체에서 []는 속성이름을 지정하는 거다.
+        </script>    
+</body>
+</html>

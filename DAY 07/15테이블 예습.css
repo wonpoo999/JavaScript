@@ -1,0 +1,23 @@
+th.label-cell {
+    background-color: red !important;
+    color: white !important;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+
+th, td {
+    border: 1px solid #f5aaaa;
+    padding: 10px;
+    text-align: center;
+    color: black;
+    background-color: white;
+
+#time th, #todo th {
+        background-color: red;
+        color: white;
+    }
+}

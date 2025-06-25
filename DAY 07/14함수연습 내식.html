@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function exercise - make calculator</title>
+    <script defer src="../js/14ex2.js"></script>
+    <link rel="icon" sizes="16x16" href="..\images\calc.png"/>
+    <link rel="stylesheet" href="14함수연습.css">
+     <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      /* background: #f2f2f2; */
+    }
+    .calculator {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 260px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+  </style> 
+</head>
+<body>
+    <div class="calculator" id="calculator">
+    <input type="number" id ="num1" placeholder="num1" />
+    <input type="number" id="num2" placeholder="num2" />
+    <select id="operator">
+      <option value="+">➕ Plus</option>
+      <option value="-">➖ Subtract</option>
+      <option value="*">✖️ Multiply</option>
+      <option value="/">➗ Divide by</option>
+    </select>
+    <button onclick="calculate()">Calculate</button>
+    <div class="result" id="result">result</div>
+  </div>
+
+  <script>
+    function calculate() {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      const op = document.getElementById('operator').value;
+      let result = 0;
+
+      if (isNaN(num1) || isNaN(num2)) {
+        document.getElementById('result').textContent = 'Enter the number properly!';
+        return;
+      }
+
+      switch (op) {
+        case '+': result = num1 + num2; break;
+        case '-': result = num1 - num2; break;
+        case '*': result = num1 * num2; break;
+        case '/': 
+          result = num2 !== 0 ? num1 / num2 : 'Cannot be divided by 0!';
+          break;
+        default:
+          result = 'Wrong calculation.';
+      }
+
+       if (typeof result === "number") {
+    result = Math.ceil(result * 100) / 100;
+  }
+      
+      document.getElementById('result').textContent = `Result: ${result}`;
+    }
+  </script>
+</body>
+</html>

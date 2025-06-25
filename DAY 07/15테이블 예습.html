@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exercise - table</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 40px;
+        background-color: #fdfdfd;
+      }
+
+      /* h2 {
+        margin: 30px 0 10px;
+      } */
+
+      h3 {
+        text-align: center;
+      }
+
+      /* table {
+        width: 100%;
+        table-layout: fixed;
+        margin-bottom: 50px;
+      } */
+
+      table {
+        border: 1px soliid red;
+        border-collapse: collapse;
+        width: 700px;
+        margin: auto;
+        /* 가로 방향 여백을 알아서 자동 설정 (양쪽 여백값 동일하게) */
+        /* table의 너비가 100% 보다 작을 때 가능 */
+      }
+
+      th, td {
+        padding: 20px;
+        text-align: center;
+        font-size: 1.1rem;
+        box-sizing: border-box;
+      }
+
+
+      /* td {
+        text-align: center;
+        width: 17%;
+        padding: 5px;
+      } */
+
+      /* 공통 TIME, TODO 셀 스타일 */
+      .label-cell {
+        background-color: #b00000;
+        color: white;
+        font-weight: bold;
+        width: 100px;
+      }
+
+      /* 첫 번째 테이블 - 바둑판 스타일 (셀 완전 붙음)
+    .table-tight {
+      border-collapse: collapse;
+    }
+
+    .table-tight th, .table-tight td {
+      background-color: white;
+      border: none;
+    } */
+
+      /* 두 번째 테이블 - 창문 스타일 (셀 간격 미세히 띄움) */
+      .table-window {
+        border-collapse: separate;
+        border-spacing: 1px 1px; /* 미세한 셀 간격 */
+      }
+
+      .table-window th,
+      .table-window td {
+        background-color: white;
+        border: 1px solid #f5aaaa; /* 옅은 빨강 테두리 */
+      }
+
+      .table-window .label-cell {
+        background-color: #b00000;
+        color: white;
+        border: 1px solid #b00000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h2>① 바둑판 테이블 (셀들이 완전히 붙음)</h2>
+  <table class="table-tight">
+    <tr>
+      <th class="label-cell">TIME</th>
+      <td>09:00</td>
+      <td>11:00</td>
+      <td>12:30</td>
+      <td>14:00</td>
+      <td>16:45</td>
+    </tr>
+    <tr>
+      <th class="label-cell">TODO</th>
+      <td>수업</td>
+      <td>과제</td>
+      <td>점심식사</td>
+      <td>주간회의</td>
+      <td>자료조사</td>
+    </tr>
+  </table> -->
+
+    <!-- <h2>② 창문 테이블 (셀 간격이 미세하게 띄워짐)</h2> -->
+    <table class="table-window">
+      <tr>
+        <th class="label-cell">TIME</th>
+        <!-- <tbody id="timeBody"> td들을 그룹화하는 테이블 요소 -->
+        <td>09:00</td>
+        <td>11:00</td>
+        <td>12:30</td>
+        <td>14:00</td>
+        <td>16:45</td>
+        <!-- </tbody> -->
+      </tr>
+      <tr>
+        <th class="label-cell">TODO</th>
+        <!-- <tbody id="todoBody"> -->
+        <td>수업</td>
+        <td>과제</td>
+        <td>점심식사</td>
+        <td>주간회의</td>
+        <td>자료조사</td>
+        <!-- </tbody> -->
+      </tr>
+    </table>
+    <!-- <button id="tomorrow">내일 시간표</button>
+        <script>
+        // 오늘 시간표 - time, todo 배열 선언
+        const time = ['09:00', '11:00', '12:30', '14:00', '16:45']
+        const todo = ['수업', '과제', '점식식사', '주간회의', '자료조사']
+
+          // 내일 시간표
+          const time2 =['08:00', '10:00', '11:20', '14:00', '15:00', '17:00']
+          const todo2 =['수업', '회의', '점식식사', '운동', '업무', '친구']
+
+         const tomorrow = document.getElementById('tomorrow')
+         const timeBody = document.getElementById('timeBody')
+         const todoBody = document.getElementById('todoBody')
+         tommrow.addEventListener('click', function(){
+          for(let t of time2){
+
+          }
+         })
+        // 오늘 시간표 - 실제 table에 들어갈 timeTB, todoTB 배열 선언
+        //화면 로딩시 바로 보임.
+        const timeTB = document.querySelectorAll('tr#time td') // tr 태그 중 id가 샤ㅡㄷdlsep
+        const todoTB = document.querySelectorAll('tr#todo td')
+
+        // 내일 시간표
+        co
+
+        for (let i = 0; i < time.length; i++) {
+            timeTB[i].textContent = time[i]
+            todoTB[i].textContent = todo[i]
+        }
+    </script> -->
+  </body>
+</html>

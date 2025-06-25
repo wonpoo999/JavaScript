@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>createElement</title>
+    <style>
+      .twice {
+        color: rgb(145, 212, 45);
+      }
+
+      ul#twice2 > li::before {
+        /*         
+      },
+      ul#twice2>li::after { */
+        content: "🚗★🏴‍☠️";
+        font-size: 0.8rem;
+        vertical-align: middle;
+      }
+
+      ul#twice2 > li::after {
+        content: "🏴‍☠️★🚗";
+        font-size: 0.8rem;
+        vertical-align: middle;
+      }
+
+      .w500 {
+        font-weight: 900;
+      }
+
+    </style>
+    <!--  -->
+    <script src="../js/12ex.js" defer></script>
+    <script defer>
+        const test = document.getElementById('twice2')
+        console.log(test.innerHTML)
+        //body의 내용이 없는 상태에서는 오류가 나기 때문에 js에 save 되어있는 내용을 참고하기 위해 defer를 넣는다
+    </script>
+  </head>
+  <body>
+    <ul id="twice2">
+      <!-- li 요소를 명령어로 만들거야 -->
+    </ul>
+    <script>
+
+    </script>
+  </body>
+</html>

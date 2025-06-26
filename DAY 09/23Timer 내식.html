@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>고급 타이머</title>
+  <link id="favicon" rel="icon" type="image/png" href="../images/폭탄 타이머.png" />
+  <style>
+    body { font-family: sans-serif; }
+    .modal {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
+      display: none; justify-content: center; align-items: center;
+      z-index: 9999;
+    }
+    .modal.show { display: flex; }
+    .modal-content {
+      background: white; border-radius: 12px;
+      padding: 25px; text-align: center;
+      animation: pulse 1s infinite alternate;
+      box-shadow: 0 0 30px red;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 20px red; }
+      100% { box-shadow: 0 0 40px orange; }
+    }
+    .modal-content img {
+      max-width: 400px; width: 90vw; height: auto;
+      border-radius: 12px; margin-top: 20px;
+      filter: drop-shadow(0 0 15px red);
+    }
+    button {
+      font-size: 16px; padding: 7px 15px;
+      margin: 5px; border-radius: 6px;
+      border: none; cursor: pointer;
+    }
+    #startBtn { background-color: #388e3c; color: white; }
+    #pauseBtn { background-color: #fbc02d; color: black; }
+    #stopBtn { background-color: #555; color: white; }
+    #closeModalBtn {
+      background-color: #d32f2f; color: white;
+      font-weight: bold; margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h3 id="now"></h3>
+  <hr />
+  <h2>타이머 설정</h2>
+  <div>
+    <label>년: <input type="number" id="year" value="0" min="0" /></label>
+    <label>월: <input type="number" id="month" value="0" min="0" /></label>
+    <label>일: <input type="number" id="day" value="0" min="0" /></label>
+    <label>시: <input type="number" id="hour" value="0" min="0" /></label>
+    <label>분: <input type="number" id="minute" value="0" min="0" /></label>
+    <label>초: <input type="number" id="second" value="0" min="0" step="0.1" /></label>
+    <br /><br />
+    <button id="startBtn">시작/재개</button>
+    <button id="pauseBtn">일시정지</button>
+    <button id="stopBtn">중지</button>
+  </div>
+  <div id="countdown" style="margin-top:20px; font-size: 20px;"></div>
+
+  <!-- 모달 -->
+  <div id="timeoutModal" class="modal">
+    <div class="modal-content">
+      <h3>⏰ Time Out! Drop your pen right now!</h3>
+      <img src="../images/boom.gif" alt="Timeout Image" />
+      <br />
+      <button id="closeModalBtn">닫기</button>
+    </div>
+  </div>
+
+  <script>
+    let timerInterval = null;
+    let targetTime = null;
+    let isPaused = false;
+    let pausedTime = 0;
+
+    const nowElem = document.getElementById("now");
+    const countdown = document.getElementById("countdown");
+    const startBtn = document.getElementById("startBtn");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const stopBtn = document.getElementById("stopBtn");
+    const modal = document.getElementById("timeoutModal");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+
+    // 실시간 현재 시각
+    setInterval(() => {
+      nowElem.textContent = new Date().toLocaleString();
+    }, 1000);
+
+    function changeFavicon(newIconURL) {
+      const favicon = document.getElementById("favicon");
+      if (favicon) favicon.href = newIconURL;
+    }
+
+    function startTimer() {
+      const y = parseInt(document.getElementById("year").value || 0);
+      const mo = parseInt(document.getElementById("month").value || 0);
+      const d = parseInt(document.getElementById("day").value || 0);
+      const h = parseInt(document.getElementById("hour").value || 0);
+      const m = parseInt(document.getElementById("minute").value || 0);
+      const s = parseFloat(document.getElementById("second").value || 0);
+
+      const now = new Date();
+      targetTime = new Date(
+        now.getFullYear() + y,
+        now.getMonth() + mo,
+        now.getDate() + d,
+        now.getHours() + h,
+        now.getMinutes() + m,
+        now.getSeconds() + Math.floor(s),
+        Math.round((s % 1) * 1000)
+      );
+
+      if (targetTime <= now) {
+        alert("현재보다 미래 시점을 설정해주세요.");
+        return;
+      }
+
+      changeFavicon("../images/폭탄 타이머.png");
+      modal.classList.remove("show");
+      runTimer();
+    }
+
+    function runTimer() {
+      if (timerInterval) return;
+
+      timerInterval = setInterval(() => {
+        const now = new Date();
+        const diff = targetTime - now;
+
+        if (diff <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          countdown.textContent = "⏰ 00:00:00.0";
+          changeFavicon("../images/boom.gif");
+          modal.classList.add("show");
+          return;
+        }
+
+        updateCountdown(diff);
+      }, 100);
+    }
+
+    function updateCountdown(ms) {
+      const totalSec = ms / 1000;
+      const y = Math.floor(totalSec / (365 * 24 * 3600));
+      const mo = Math.floor((totalSec % (365 * 24 * 3600)) / (30 * 24 * 3600));
+      const d = Math.floor((totalSec % (30 * 24 * 3600)) / (24 * 3600));
+      const h = Math.floor((totalSec % (24 * 3600)) / 3600);
+      const m = Math.floor((totalSec % 3600) / 60);
+      const s = (totalSec % 60).toFixed(1).padStart(4, "0");
+
+      countdown.textContent = `남은 시간: ${y}년 ${mo}월 ${d}일 ${String(h).padStart(2, "0")}시 ${String(m).padStart(2, "0")}분 ${s}초`;
+    }
+
+    startBtn.addEventListener("click", () => {
+      if (!timerInterval) {
+        if (!targetTime || !isPaused) {
+          startTimer();
+        } else if (isPaused) {
+          // 재개
+          const now = new Date();
+          targetTime = new Date(now.getTime() + pausedTime);
+          isPaused = false;
+          runTimer();
+        }
+      }
+    });
+
+    pauseBtn.addEventListener("click", () => {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        pausedTime = targetTime - new Date();
+        isPaused = true;
+        countdown.textContent = "⏸ 일시정지 중...";
+      }
+    });
+
+    stopBtn.addEventListener("click", () => {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      targetTime = null;
+      isPaused = false;
+      pausedTime = 0;
+      countdown.textContent = "타이머 중지됨";
+      changeFavicon("../images/폭탄 타이머.png");
+      modal.classList.remove("show");
+    });
+
+    closeModalBtn.addEventListener("click", () => {
+      modal.classList.remove("show");
+      changeFavicon("../images/폭탄 타이머.png");
+    });
+  </script>
+</body>
+</html>

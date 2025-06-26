@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>객체 배열 시간표</title>
+  <style>
+    table {
+      width: 400px;
+    }
+
+    th {
+      background-color: brown;
+      color: white;
+    }
+
+    th,
+    td {
+      width: 200px;
+      border: 1px solid brown;
+      padding: 7px 12px;
+      text-align: center;
+    }
+
+    h3,
+    button,
+    input {
+      padding: 7px 12px;
+    }
+  </style>
+  <script src="./js/20ex.js"></script>
+</head>
+
+<body>
+  <!-- 참고 19번 html 없음. -->
+  <div id="root">
+    <h3>오늘 시간표</h3>
+
+  </div>
+  <hr>
+  <div>
+    <label for="newTime">시간: </label>
+    <input type="time" id="newTime">
+    <label for="newTodo">할일:</label>
+    <input type="text" id="newTodo">
+    <button id="newBtn">새로운 스케줄 추가</button>
+  </div>
+
+</body>
+
+</html>

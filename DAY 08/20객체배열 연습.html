@@ -13,12 +13,12 @@
       }
 
       table {
-        border-collapse: collapse;
-        table-layout:fixed;
-        border-spacing: 1px 1px;
+        border-collapse: separate;
+        border-spacing: 2px;
+        /* border-spacing: 1px 1px; */
         width: 400px;
         margin: 30px auto;
-        /* table-layout: fixed; */
+        table-layout: fixed;
       }
 
       th, td {
@@ -33,11 +33,24 @@
     background-color: aliceblue;
     /* box-sizing: border-box; */
 
+    h3, button, input{
+        padding: 7px 12px;
+    }
+
       }
     </style>    
   </head>
   <body>
     <h3 style="text-align: center">오늘의 스케쥴</h3>
     <div id="container"></div>
+    <hr>
+    <div>
+      <label for="newTime">시간: </label>
+      <input type="time" id="newTime">
+      <label for="newTodo">할일: </label>
+      
+      <input type="text" id="newTodo">
+      <button id="newBtn">새로운 스케줄 추가</button>
+    </div>
   </body>
 </html>

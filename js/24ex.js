@@ -10,7 +10,7 @@ fruits.splice(2, 0, 'lemon')
 console.log(fruits.toString())
 
 fruits = ['banana', 'mango', 'orange', 'apple']
-fruits.splice(1,1)
+var myfruits = fruits.splice(1,1)
 //1: 추가될 위치 인덱스
 //1: 삭제할 데이터 갯수
 //추가할 값 없으면 어떻게 될까? 그럼 1번 자리 한개를 삭제하게 되지.
@@ -21,7 +21,7 @@ console.log(fruits.toString())
 
 //2.slice() : 배열의 특정 부분을 자르기하여 새로운 배열을 생성
 fruits = ['banana', 'mango', 'orange', 'apple']
-const myfruits = fruits.slice(1, 3)
+            //메소드 결과 리턴이 있다. 리턴이 중요
 // 1: 시작위치 인덱스
 // 3: 마지막 위치 인덱스 (포함 X)
 // 자르기한 배열의 갯수 = 3-1 = 2개
@@ -29,14 +29,22 @@ console.log(fruits.toString()) //fruits는 변화가 없음.
 console.log(myfruits.toString()) //myfruits는 새로운 배열
 
 //1. splice
-//2. slice()
+    
+//2. slice() 의 입력값이 1개인 경우 - 마지막 인덱스 생략(끝까지)
+myfruits = fruits.slice(1)
+console.log('🤗', myfruits.toString())
+//slice()의 입력값이 음수 인 경우 - 맨뒤 -1부터 접근
+myfruits = fruits.slice(-3, -1)
+console.log('🤗', myfruits.toString()) //'mango', 'orange'
+myfruits = fruits.slice(-1)
+console.log('🤗', myfruits.toString()) //'apple'
 //3. indexOf()
 fruits = ['banana', 'mango', 'orange', 'apple'];
-let position = fruits.indexOf("Apple")
-console.log('Apple의 첫번째 위치: ', position)
+let position = fruits.indexOf("apple")
+console.log('apple의 첫번째 위치: ', position)
 //4. lastIndexOf()
-position = fruits.lastIndexOf("Apple")
-console.log('Apple의 첫번째 위치: ', position)
+position = fruits.lastIndexOf("apple")
+console.log('apple의 첫번째 위치: ', position)
 position = fruits.indexOf("Lemon") //없는 값
 console.log('Lemon의 첫번째 위치:', position)
 //5. includes()

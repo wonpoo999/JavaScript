@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>우리 펜션 예약</title>
+  <style>
+    body {
+      padding: 30px;
+      font-family: sans-serif;
+    }
+    #priceInfo {
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: darkgreen;
+    }
+    #totalCost {
+      margin-top: 10px;
+      font-size: 18px;
+      color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <h3>우리 펜션에 온 것을 환영하오, 낮선 이여. 나는 이 펜션의 깨우친 주인, 종세이오.</h3>
+  <hr />
+  
+  <div>
+    <label for="enterDate">입실날짜: </label>
+    <input type="date" id="enterDate" />
+  </div>
+
+  <div id="priceInfo">💰 1박당 숙박비: 계산 중...</div>
+
+  <div>
+    <label for="nights">숙박일수: </label>
+    <input type="number" id="nights" min="1" max="10000000" value="1" placeholder="숙박일수 입력">
+  </div>
+
+  <div>
+    <label for="outDate">퇴실날짜: </label>
+    <input type="date" id="outDate" />
+  </div>
+
+  <div id="totalCost">💵 총 숙박요금: 계산 중...</div>
+
+  <script>
+    // 상수 정의
+    const BASE_PRICE = 400000;
+    const BASE_DAYS = 30;
+
+    // 100원 단위 반올림 함수
+    function roundToNearest100(amount) {
+      return Math.round(amount / 100) * 100;
+    }
+
+    const ONE_DAY_PRICE = roundToNearest100(BASE_PRICE / BASE_DAYS);
+
+    // 요소 가져오기
+    const enterDate = document.getElementById('enterDate');
+    const nights = document.getElementById('nights');
+    const outDate = document.getElementById('outDate');
+    const priceInfo = document.getElementById('priceInfo');
+    const totalCost = document.getElementById('totalCost');
+
+    // 날짜 포맷 함수: yyyy-MM-dd
+    function dateInputFmt(vdate) {
+      const year = vdate.getFullYear();
+      const month = (vdate.getMonth() + 1).toString().padStart(2, '0');
+      const date = vdate.getDate().toString().padStart(2, '0');
+      return [year, month, date].join('-');
+    }
+
+    // 오늘 날짜 설정
+    const today = new Date();
+    enterDate.value = dateInputFmt(today);
+    enterDate.min = dateInputFmt(today);
+
+    // 1박당 숙박비 표시
+    priceInfo.textContent = `💰 1박당 숙박비: ${ONE_DAY_PRICE.toLocaleString()}원`;
+
+    // 퇴실 날짜 및 총 숙박비 계산
+    function updateCalculation() {
+      const days = parseInt(nights.value);
+      if (!enterDate.value || isNaN(days) || days < 1) return;
+
+      const inDate = new Date(enterDate.value);
+      inDate.setDate(inDate.getDate() + days);
+      outDate.value = dateInputFmt(inDate);
+
+      const total = ONE_DAY_PRICE * days;
+      totalCost.textContent = `💵 총 숙박요금: ${total.toLocaleString()}원`;
+    }
+
+    // 이벤트 연결
+    nights.addEventListener('input', updateCalculation);
+    enterDate.addEventListener('change', updateCalculation);
+
+    // 페이지 로딩 시 계산 1회 실행
+    updateCalculation();
+  </script>
+</body>
+</html>
+    

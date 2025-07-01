@@ -1,0 +1,29 @@
+; 파일형식: csv (Comma Separated Values)
+; 데이터를, (콤마) 로 나열.
+
+; 데이터형식
+
+; 1)XML : (Extensible Markup Language). 데이터를 표현/저장/전송하는 형식
+; HTML의 정해진 태그처럼 데이터 저장을 위해서 다양한 태그를 정의하는 것이 가능
+
+; 2) JSON: 자바스크립트 객체를 문자열 형태로 표현하여 전송. 지금은 대체로 JSON 사용합니다.
+
+; <데이터 발신>                 ------------------>                  <데이터 수신>
+; 객체를 문자열(JSON)           JSON 전송                         JSON 문자열을 객체로 변환
+; why? 프로그램에서는 객체 형식이어야 객체. 속성으로 데이터 사용 가능
+; 인터넷에서는 문자열 형태로 보내야 전송이 가능. 
+; response.json() 은 응답의 본문(데이터)을 JS 객체로 변환
+
+
+;따옴표가 있으면 문자열
+
+; 2. Open API 데이터 요청
+
+; 테스트 명령어 : curl (클라이언트 url)
+; 개발 코드를 만들기 전에 url, 인증, query data 잘 동작하는지 확인하는 목적
+
+; https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide
+
+; curl -v -G GET "https://dapi.kakao.com/v2/search/vclip" \
+; --data-urlencode "query=AOA" \
+; -H "Authorization: KakaoAK ${REST_API_KEY}" 15c2ffaa072b84d4c98f6da83860def2 <==
